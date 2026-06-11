@@ -1,0 +1,63 @@
+--[[
+  LuaX Example: Complete Program
+  --------------------------------
+  Demonstrates all LuaX features working together.
+]]
+
+import math from "math"
+
+-- Define some enums
+enum Priority {
+    Low,
+    Normal = 10,
+    High,
+    Critical
+}
+
+enum Status {
+    Pending,
+    Active,
+    Completed,
+    Failed
+}
+
+-- Type annotations (stripped at compile time)
+type Task = {
+    id: number,
+    name: string,
+    priority: number,
+    status: number
+}
+
+-- Regular Lua code
+function createTask(id, name, priority)
+    return {
+        id = id,
+        name = name,
+        priority = priority,
+        status = Status.Pending
+    }
+end
+
+function printTask(task)
+    print(("Task #%d: %s (Priority: %d, Status: %d)"):format(
+        task.id,
+        task.name,
+        task.priority,
+        task.status
+    ))
+end
+
+-- Create and manage tasks
+local tasks = {
+    createTask(1, "Write documentation", Priority.High),
+    createTask(2, "Fix bug #123", Priority.Critical),
+    createTask(3, "Refactor code", Priority.Normal),
+    createTask(4, "Review PRs", Priority.Low)
+}
+
+for _, task in ipairs(tasks) do
+    printTask(task)
+end
+
+print("\nTotal tasks: " .. #tasks)

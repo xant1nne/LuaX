@@ -1,0 +1,38 @@
+--[[
+  LuaX v0.4 Example: Classes
+  ==========================
+  Demonstrates secure class syntax with metatables.
+]]
+
+class NetworkNode
+    function new(ip, port)
+        self.ip = ip
+        self.port = port
+        self.connected = false
+    end
+    
+    function connect()
+        print("Connecting to " .. self.ip .. ":" .. self.port)
+        self.connected = true
+    end
+    
+    function disconnect()
+        if self.connected then
+            print("Disconnecting from " .. self.ip)
+            self.connected = false
+        end
+    end
+    
+    function send_data(data)
+        if not self.connected then
+            error("Not connected")
+        end
+        print("Sending: " .. data)
+    end
+end
+
+-- Usage
+local node = NetworkNode.new("192.168.1.1", 8080)
+node:connect()
+node:send_data("Hello")
+node:disconnect()

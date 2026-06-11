@@ -1,0 +1,18 @@
+--[[
+  LuaX Example: Import Feature
+  ----------------------------
+  Demonstrates the import syntax for requiring modules.
+]]
+
+-- Import with default binding
+import http from "http"
+
+-- Import with named imports
+import { parse, stringify } from "json"
+
+-- Now use the imported modules
+local response = http.get("https://example.com")
+local data = parse(response)
+
+print("Status: " .. tostring(data.status))
+print("Data:", stringify(data))

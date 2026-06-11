@@ -1,0 +1,41 @@
+--[[
+  LuaX Example: Enum Feature
+  ---------------------------
+  Demonstrates the enum syntax for creating enumerated types.
+]]
+
+-- Define an enum
+enum Direction {
+    North,
+    South,
+    East,
+    West
+}
+
+-- Enums can also have explicit values
+enum HttpStatus {
+    Ok = 200,
+    NotFound = 404,
+    ServerError = 500
+}
+
+-- Enums can mix explicit and auto-incremented values
+enum Color {
+    Red,
+    Green = 10,
+    Blue,
+    Yellow = 20,
+    Purple
+}
+
+-- Use the enums
+local currentDirection = Direction.North
+local statusCode = HttpStatus.Ok
+
+print("Direction: " .. currentDirection)
+print("Status: " .. statusCode)
+
+-- Iterate over enum values
+for name, value in pairs(Direction) do
+    print(name .. " = " .. tostring(value))
+end

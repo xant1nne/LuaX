@@ -1,0 +1,34 @@
+--[[
+  LuaX Example: Type Annotations
+  --------------------------------
+  Demonstrates type annotations that are stripped at compile time.
+  Type annotations are compile-time only and produce no runtime overhead.
+]]
+
+-- Type alias for a user object
+type User = {
+    id: number,
+    name: string,
+    email: string,
+    age: number
+}
+
+-- Type alias for a result type (not shown in this example, but supported)
+type Result = {
+    success: boolean,
+    message: string
+}
+
+-- Functions remain normal Lua code
+function createUser(id, name, email, age)
+    return {
+        id = id,
+        name = name,
+        email = email,
+        age = age
+    }
+end
+
+-- All type annotations are completely stripped - this is regular Lua
+local user = createUser(1, "Alice", "alice@example.com", 30)
+print("User: " .. user.name)
