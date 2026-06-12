@@ -1,0 +1,29 @@
+# Unrelated vendored content
+Anthropic-Cybersecurity-Skills-main/
+
+# Rust build artifacts
+launcher/target/
+**/target/
+
+# Git and IDE
+.git/
+.gitignore
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Local docs drafts (not needed in image)
+V0.5_*.md
+GETTING_STARTED_V05.md
+README_V05.md
+
+# Docker meta (avoid recursive copy noise)
+Dockerfile
+docker-compose.yml
+.dockerignore

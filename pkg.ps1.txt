@@ -1,0 +1,29 @@
+# package.ps1 - Скрипт сборки релиза
+Write-Host "--- Запуск сборки LuaX ---" -ForegroundColor Cyan
+
+# 1. Сборка проекта
+Write-Host "Компиляция..." -ForegroundColor Yellow
+cargo build --release
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Ошибка компиляции!" -ForegroundColor Red
+    exit
+}
+
+# 2. Подготовка папки dist
+$dist = "dist"
+if (Test-Path $dist) { Remove-Item -Recurse -Force $dist }
+New-Item -ItemType Directory -Force $dist | Out-Null
+
+# 3. Копирование файлов
+Write-Host "Копирование артефактов..." -ForegroundColor Yellow
+Copy-Item "target/release/luax.exe" -Destination "$dist/"
+
+# Добавляем README, чтобы пользователь знал, что делать
+$readme = @"
+# LuaX Transpiler
+Для запуска используйте: .\luax.exe run ваш_файл.lx
+"@
+$readme | Out-File "$dist\README.md" -Encoding utf8
+
+Write-Host "--- Релиз готов в папке '$dist' ---" -ForegroundColor Green
+Write-Host "Теперь сожми папку 'dist' в ZIP-архив и заливай на GitHub!" -ForegroundColor Green

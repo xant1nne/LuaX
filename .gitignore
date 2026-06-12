@@ -1,0 +1,42 @@
+# Rust launcher artifacts
+launcher/target/
+launcher/Cargo.lock
+
+##
+/target/
+/dist/
+*.exe
+
+# Unrelated vendored tree (keep out of git)
+Anthropic-Cybersecurity-Skills-main/
+
+# Build outputs
+*.exe
+*.dll
+*.so
+*.dylib
+*.rlib
+*.rmeta
+
+# Generated Lua from examples/build
+examples/*.lua
+!examples/example_import.lua
+!examples/example_enum.lua
+*.tmp.lua
+*.luax.tmp.lua
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local delivery drafts (superseded by docs/)
+V0.5_*.md
+GETTING_STARTED_V05.md
+README_V05.md

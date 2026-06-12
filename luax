@@ -1,0 +1,8 @@
+#!/bin/sh
+# LuaX v0.2 — Unix launcher
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+if command -v luajit >/dev/null 2>&1; then
+  exec luajit "$SCRIPT_DIR/luax.lua" "$@"
+else
+  exec lua "$SCRIPT_DIR/luax.lua" "$@"
+fi

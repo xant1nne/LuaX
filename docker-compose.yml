@@ -1,0 +1,36 @@
+services:
+  luax:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: luax:0.5.0
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace:ro
+    profiles:
+      - cli
+
+  luax-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    image: luax-dev:0.5.0
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    command: ["-c", "make test && luax --version"]
+
+  luax-shell:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    image: luax-dev:0.5.0
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    stdin_open: true
+    tty: true
+    entrypoint: ["/bin/bash"]
